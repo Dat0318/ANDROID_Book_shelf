@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/point_10"
+    android:layout_marginTop="@dimen/point_8">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewGallery"
+        android:layout_below="@+id/relative_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/relative_title"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/border10">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_marginStart="@dimen/nav_header_vertical_spacing"-->
+<!--            android:layout_marginEnd="@dimen/activity_horizontal_margin"-->
+<!--            android:contentDescription="Icon"-->
+<!--            android:src="@drawable/avatar0"-->
+<!--            android:layout_marginLeft="@dimen/nav_header_vertical_spacing"-->
+<!--            android:layout_marginRight="@dimen/activity_horizontal_margin" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_toEndOf="@id/imageView"-->
+<!--            android:layout_toRightOf="@id/imageView"-->
+<!--            android:layout_marginVertical="@dimen/nav_header_vertical_spacing"-->
+<!--            android:layout_marginEnd="@dimen/nav_header_vertical_spacing"-->
+<!--            android:text="Title for list of book"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginRight="@dimen/nav_header_vertical_spacing" />-->
+<!--    </RelativeLayout>-->
+
+</RelativeLayout>

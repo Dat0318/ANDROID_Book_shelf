@@ -8,7 +8,7 @@
     android:paddingHorizontal="@dimen/point_8"
     android:layout_marginTop="@dimen/point_8"
     android:layout_marginRight="@dimen/point_8"
-    android:background="@drawable/border16">
+    android:background="@drawable/border10">
 
     <ImageView
         android:id="@+id/imageViewAvatar"
