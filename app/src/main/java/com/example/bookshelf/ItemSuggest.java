@@ -1,8 +1,11 @@
 package com.example.bookshelf;
 
+import org.json.JSONArray;
+
 public class ItemSuggest {
     private String description;
     private int imgId;
+    private JSONArray listItem;
 
     public ItemSuggest() {
     }
@@ -26,5 +29,13 @@ public class ItemSuggest {
 
     public void setImgId(int imgId) {
         this.imgId = imgId;
+    }
+
+    public JSONArray getListItem() {
+        return listItem;
+    }
+
+    public void setListItem(JSONArray listItem) {
+        this.listItem = listItem;
     }
 }

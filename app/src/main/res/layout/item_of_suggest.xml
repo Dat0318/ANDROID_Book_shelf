@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relativeLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/point_10"
+    android:paddingHorizontal="@dimen/point_8"
+    android:layout_marginTop="@dimen/point_8"
+    android:layout_marginRight="@dimen/point_8"
+    android:background="@drawable/border16">
+
+    <ImageView
+        android:id="@+id/imageViewAvatar"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="Icon"
+        android:src="@drawable/avatar0" />
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageViewAvatar"
+        android:layout_marginTop="@dimen/point_10"
+        android:layout_centerHorizontal="true"
+        android:text="Title for list of book"
+        android:textSize="16sp" />
+</RelativeLayout>

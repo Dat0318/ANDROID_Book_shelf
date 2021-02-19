@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeightLarge"
+    android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/point_10"
-    android:layout_marginVertical="@dimen/point_8">
+    android:layout_marginTop="@dimen/point_8">
 
     <RelativeLayout
         android:id="@+id/relative_title"
@@ -40,7 +40,7 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_item_suggest"
+        android:id="@+id/recViewItemSuggest"
         android:layout_below="@+id/relative_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

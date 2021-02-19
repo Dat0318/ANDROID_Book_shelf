@@ -1,5 +1,7 @@
 package com.example.bookshelf.ui.home;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,9 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshelf.Home;
 import com.example.bookshelf.ItemSuggest;
 import com.example.bookshelf.ItemSuggestAdapter;
 import com.example.bookshelf.R;
@@ -26,7 +28,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.Iterator;
 
 public class HomeFragment extends Fragment {
 
@@ -58,6 +59,8 @@ public class HomeFragment extends Fragment {
                         break;
                     case R.id.navigation_dashboard:
                         Log.e(TAG, "Click dashboard tag");
+                        Intent goFavorites = new Intent(container.getContext(), Home.class);
+                        startActivityForResult(goFavorites, 0);
                         break;
                     case R.id.navigation_news:
                         Log.e(TAG, "Click notifications tag");
@@ -73,34 +76,35 @@ public class HomeFragment extends Fragment {
     private void setupTabHome(View root) {
         ItemSuggest[] listSuggest = new ItemSuggest[]{};
         String home = readJsonFile(root, "home.json");
+        Resources resources = root.getContext().getResources();
         try {
             JSONObject data = new JSONObject(home);
             JSONArray suggestList = data.getJSONArray("data");
 
             for (int i = 0 ; i < suggestList.length(); i++) {
                 JSONObject obj = suggestList.getJSONObject(i);
-                ItemSuggest  itemSuggest = new ItemSuggest();
+                ItemSuggest itemSuggest = new ItemSuggest();
                 itemSuggest.setDescription(obj.getString("title"));
-                System.out.println(obj.getString("avatar"));
-                itemSuggest.setImgId(123);
-                listSuggest = addItem(listSuggest, itemSuggest);
-                System.out.println("=====================");
-                System.out.println(listSuggest);
+                final int resourceId = resources.getIdentifier(obj.getString("avatar"), "drawable", root.getContext().getPackageName());
+                itemSuggest.setImgId(resourceId);
 
                 JSONArray suggestItem = obj.getJSONArray("list");
-                for (int j = 0 ; j < suggestItem.length(); j++) {
+                JSONArray listItem = new JSONArray();
+                for (int j = 0; j < suggestItem.length(); j++) {
                     JSONObject suggestObj = suggestItem.getJSONObject(j);
-
-//                    System.out.println(suggestObj);
-//                    System.out.println(suggestObj.getClass().getSimpleName());
-
-                    String A = suggestObj.getString("name");
-                    String B = suggestObj.getString("src");
-//                    System.out.println(A);
-//                    System.out.println(B);
+                    JSONObject item = new JSONObject();
+                    String name;
+                    Resources src = root.getContext().getResources();
+                    name = suggestObj.getString("name");
+                    final int srcId = resources.getIdentifier(suggestObj.getString("src"), "drawable", root.getContext().getPackageName());
+                    item.put("NAME", name);
+                    item.put("SRC", srcId);
+                    listItem.put(item);
                 }
+                itemSuggest.setListItem(listItem);
+                listSuggest = addItem(listSuggest, itemSuggest);
             }
-            printInfo(root);
+            printInfo(root, listSuggest);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -113,27 +117,28 @@ public class HomeFragment extends Fragment {
         return listSuggest;
     }
 
-    private void printInfo(View root) {
-        ItemSuggest[] myListData = new ItemSuggest[]{
-                new ItemSuggest("Email", R.drawable.avatar0),
-                new ItemSuggest("Info", R.drawable.avatar1),
-                new ItemSuggest("Delete", R.drawable.avatar2),
-                new ItemSuggest("Dialer", R.drawable.avatar3),
-                new ItemSuggest("Alert", R.drawable.avatar4),
-                new ItemSuggest("Map", R.drawable.avatar3),
-                new ItemSuggest("Email", R.drawable.avatar4),
-                new ItemSuggest("Info", R.drawable.avatar2),
-                new ItemSuggest("Delete", R.drawable.avatar1),
-                new ItemSuggest("Dialer", R.drawable.avatar0),
-                new ItemSuggest("Alert", R.drawable.avatar3),
-        };
+    private void printInfo(View root, ItemSuggest[] listSuggest) {
+//        ItemSuggest[] myListData = new ItemSuggest[]{
+//                new ItemSuggest("Email", R.drawable.avatar0),
+//                new ItemSuggest("Info", R.drawable.avatar1),
+//                new ItemSuggest("Delete", R.drawable.avatar2),
+//                new ItemSuggest("Dialer", R.drawable.avatar3),
+//                new ItemSuggest("Alert", R.drawable.avatar4),
+//                new ItemSuggest("Map", R.drawable.avatar3),
+//                new ItemSuggest("Email", R.drawable.avatar4),
+//                new ItemSuggest("Info", R.drawable.avatar2),
+//                new ItemSuggest("Delete", R.drawable.avatar1),
+//                new ItemSuggest("Dialer", R.drawable.avatar0),
+//                new ItemSuggest("Alert", R.drawable.avatar3),
+//        };
+
 //         horizontal scroll cycle view
 //        LinearLayoutManager layoutManager
 //                = new LinearLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false);
 //        recyclerView.setLayoutManager(layoutManager);
 
         RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recViewSuggest);
-        ItemSuggestAdapter adapter = new ItemSuggestAdapter(myListData);
+        ItemSuggestAdapter adapter = new ItemSuggestAdapter(listSuggest);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         recyclerView.setAdapter(adapter);
