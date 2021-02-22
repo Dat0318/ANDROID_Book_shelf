@@ -1,26 +1,21 @@
 package com.example.bookshelf;
 
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.Arrays;
 
 public class ItemGalleryAdapter extends RecyclerView.Adapter<ItemGalleryAdapter.ViewHolder> {
     private ItemGallery[] listImg;
-    private ItemGallery[] listItem = new ItemGallery[]{};
+    private ItemImage[] listItem = new ItemImage[]{};
 
     // RecyclerView recyclerView;
     public ItemGalleryAdapter(ItemGallery[] listImg) {
@@ -36,46 +31,36 @@ public class ItemGalleryAdapter extends RecyclerView.Adapter<ItemGalleryAdapter.
         return viewHolder;
     }
 
-    private ItemGallery[] addItem(ItemGallery[] listOfSuggest, ItemGallery itemSuggest) {
-        final int N = listOfSuggest.length;
-        listOfSuggest = Arrays.copyOf(listOfSuggest, N + 1);
-        listOfSuggest[N] = itemSuggest;
-        return listOfSuggest;
+    private ItemImage[] addItem(ItemImage[] listItemImage, ItemImage itemImage) {
+        final int N = listItemImage.length;
+        listItemImage = Arrays.copyOf(listItemImage, N + 1);
+        listItemImage[N] = itemImage;
+        return listItemImage;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final ItemGallery myListData = listImg[position];
-//        holder.textView.setText(listImg[position].getTitle());
-//        holder.imageView.setImageResource(listImg[position].getAvatar());
-        JSONArray jsonArray = (JSONArray) listImg[position].getListImg();
+        final ItemGallery listItem = listImg[position];
+        Resources resources = holder.relativeLayout.getContext().getResources();
+        int[] imageArray = listItem.getListImg();
+        ItemImage[] imageSrc = new ItemImage[]{};
 
-        for (int i = 0; i < jsonArray.length(); i++) {
-            try {
-                ItemGallery item_gallery = new ItemGallery();
-                JSONObject suggestObj = jsonArray.getJSONObject(i);
-                item_gallery.setTitle(suggestObj.getString("NAME"));
-                item_gallery.setAvatar(suggestObj.getInt("SRC"));
-                listItem = addItem(listItem, item_gallery);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        for (int i = 0; i < imageArray.length; i++) {
+            ItemImage itemImage = new ItemImage();
+            itemImage.setSrc(imageArray[i]);
+
+            imageSrc = addItem(imageSrc, itemImage);
         }
 
-        ItemGalleryAdapter adapter = new ItemGalleryAdapter(listItem);
+        ItemImageAdapter adapter = new ItemImageAdapter(imageSrc);
         holder.recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(holder.relativeLayout.getContext(), LinearLayoutManager.VERTICAL, false);
         holder.recyclerView.setLayoutManager(layoutManager);
         holder.recyclerView.setAdapter(adapter);
-        listItem = new ItemGallery[]{};
-
-//        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(view.getContext(), "click on item: " + myListData.getTitle(), Toast.LENGTH_LONG).show();
-//            }
-//        });
+        int numberOfColumns = 2;
+        holder.recyclerView.setLayoutManager(new GridLayoutManager(holder.relativeLayout.getContext(), numberOfColumns));
+        imageSrc = new ItemImage[]{};
     }
 
 

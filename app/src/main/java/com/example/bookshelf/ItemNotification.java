@@ -3,16 +3,43 @@ package com.example.bookshelf;
 import org.json.JSONArray;
 
 public class ItemNotification {
+    private int avatar;
+    private int status;
+    private String title;
     private String description;
-    private int imgId;
-    private JSONArray listItem;
 
     public ItemNotification() {
     }
 
-    public ItemNotification(String description, int imgId) {
+    public ItemNotification(int avatar, int status, String title, String description) {
+        this.avatar = avatar;
+        this.status = status;
+        this.title = title;
         this.description = description;
-        this.imgId = imgId;
+    }
+
+    public int getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(int avatar) {
+        this.avatar = avatar;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -21,21 +48,5 @@ public class ItemNotification {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getImgId() {
-        return imgId;
-    }
-
-    public void setImgId(int imgId) {
-        this.imgId = imgId;
-    }
-
-    public JSONArray getListItem() {
-        return listItem;
-    }
-
-    public void setListItem(JSONArray listItem) {
-        this.listItem = listItem;
     }
 }

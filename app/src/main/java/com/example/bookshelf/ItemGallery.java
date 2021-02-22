@@ -5,7 +5,7 @@ import org.json.JSONArray;
 public class ItemGallery {
     private String title;
     private int avatar;
-    private JSONArray listImg;
+    private int[] listImg;
 
     public ItemGallery() {
     }
@@ -31,11 +31,11 @@ public class ItemGallery {
         this.avatar = avatar;
     }
 
-    public JSONArray getListImg() {
+    public int[] getListImg() {
         return listImg;
     }
 
-    public void setListImg(JSONArray listImg) {
+    public void setListImg(int[] listImg) {
         this.listImg = listImg;
     }
 }

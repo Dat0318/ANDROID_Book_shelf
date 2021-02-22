@@ -1,0 +1,60 @@
+{
+  "response": 200,
+  "data": [
+    {
+      "id": 0,
+      "name": "Book 1",
+      "avatar": "book0"
+    },
+    {
+      "id": 1,
+      "name": "Book 2",
+      "avatar": "book1"
+    },
+    {
+      "id": 2,
+      "name": "Book 3",
+      "avatar": "book2"
+    },
+    {
+      "id": 3,
+      "name": "Book the same",
+      "avatar": "book3"
+    },
+    {
+      "id": 4,
+      "name": "Book 4",
+      "avatar": "book4"
+    },
+    {
+      "id": 5,
+      "name": "Book 5",
+      "avatar": "book5"
+    },
+    {
+      "id": 6,
+      "name": "Book 6",
+      "avatar": "book3"
+    },
+    {
+      "id": 7,
+      "name": "Book 7",
+      "avatar": "book2"
+    },
+    {
+      "id": 8,
+      "name": "Book 8",
+      "avatar": "book1"
+    },
+    {
+      "id": 9,
+      "name": "Book 9",
+      "avatar": "book4"
+    },
+    {
+      "id": 10,
+      "name": "Book 10",
+      "avatar": "book5"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/point_10"
+    android:layout_marginTop="@dimen/point_8">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewSrc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border8"
+        android:padding="@dimen/point_8"
+        android:src="@drawable/avatar0" />
+</RelativeLayout>

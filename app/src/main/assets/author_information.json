@@ -1,0 +1,9 @@
+{
+  "response": 200,
+  "avatar": "avatar0",
+  "name": "TDD",
+  "dateOfBirth": "27/04/97",
+  "mail": "dattran0319@gmal.com",
+  "versionApp": "1.0.0",
+  "linkRate": "https://reactnative.dev/docs/native-modules-android"
+}
