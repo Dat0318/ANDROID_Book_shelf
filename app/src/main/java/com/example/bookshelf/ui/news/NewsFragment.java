@@ -17,6 +17,7 @@ import com.example.bookshelf.R;
 public class NewsFragment extends Fragment {
 
     private NewsViewModel newsViewModel;
+    private static final String TAG = "NewsFragment";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

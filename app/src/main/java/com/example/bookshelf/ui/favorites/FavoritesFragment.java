@@ -17,12 +17,13 @@ import com.example.bookshelf.R;
 public class FavoritesFragment extends Fragment {
 
     private FavoritesViewModel favoritesViewModel;
+    private static final String TAG = "FavoritesFragment";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         favoritesViewModel =
                 new ViewModelProvider(this).get(FavoritesViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View root = inflater.inflate(R.layout.fragment_favorites, container, false);
         final TextView textView = root.findViewById(R.id.text_dashboard);
         favoritesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

@@ -1,5 +1,6 @@
 package com.example.bookshelf.ui.home;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -10,8 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +24,8 @@ import com.example.bookshelf.Home;
 import com.example.bookshelf.ItemSuggest;
 import com.example.bookshelf.ItemSuggestAdapter;
 import com.example.bookshelf.R;
+import com.example.bookshelf.ui.favorites.FavoritesFragment;
+import com.example.bookshelf.ui.news.NewsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
@@ -29,7 +36,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
-public class HomeFragment extends Fragment {
+
+public class HomeFragment extends Fragment{
 
     private HomeViewModel homeViewModel;
     private static final String TAG = "HomeFragment";
@@ -49,6 +57,11 @@ public class HomeFragment extends Fragment {
 
         setupTabHome(root);
 
+//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.add(R.id.navigation_dashboard, new FavoritesFragment(), "FavoritesFragment");
+//        fragmentTransaction.add(R.id.navigation_news, new NewsFragment(), "NewsFragment");
+//        fragmentTransaction.commit();
+
         BottomNavigationView bottomNavigationView = root.findViewById(R.id.nav_bottom);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -57,10 +70,11 @@ public class HomeFragment extends Fragment {
                     case R.id.navigation_home:
                         Log.e(TAG, "Click home tag");
                         break;
-                    case R.id.navigation_dashboard:
+                    case R.id.navigation_favorites:
                         Log.e(TAG, "Click dashboard tag");
-                        Intent goFavorites = new Intent(container.getContext(), Home.class);
-                        startActivityForResult(goFavorites, 0);
+//                        Navigation.findNavController(root).navigate(R.id.actionFavorites);
+//                        Intent goFavorites = new Intent(container.getContext(), Home.class);
+//                        startActivityForResult(goFavorites, 0);
                         break;
                     case R.id.navigation_news:
                         Log.e(TAG, "Click notifications tag");
